@@ -6,9 +6,12 @@ import redis from 'redis'
 
 dotenv.config()
 
-const redisClient = redis.createClient({
-  uri: 'redis://:pefc64c1dd88e9763c770da3144a2dff43020a4d10f3a056069686ef0b99546d4@ec2-3-93-123-2.compute-1.amazonaws.com:15100',
+const redisClient = redis.createClient(process.env.REDIS_URL, {
+  tls: {
+    rejectUnauthorized: false,
+  },
 })
+// 'redis://:pefc64c1dd88e9763c770da3144a2dff43020a4d10f3a056069686ef0b99546d4@ec2-3-93-123-2.compute-1.amazonaws.com:15100'
 
 const DEFAULT_EXPIRATION = 3600
 
